@@ -18,3 +18,22 @@ function openTab(event, tabName) {
 function openURL(event, link) {
     location.href = link;
 }
+
+function initMail() {
+    var name = document.getElementById('ct-name').value;
+    var email = document.getElementById('ct-email').value;
+    var subject = document.getElementById('ct-subject').value;
+    var message = document.getElementById('ct-message').value;
+
+    if(name == "" || email == ""){
+        alert('Please enter both name and email (mandatory * fields).');
+    }else{
+        emailjs.send("gmail", "avenkit_services",
+            {"name":name,"email":email,"subject":subject,"message":message})
+        .then(function(response) {
+            alert('Message Sent, thankyou for contacting me.');
+        }, function(err) {
+            alert('Error - '+ err);
+        });
+    }
+}
